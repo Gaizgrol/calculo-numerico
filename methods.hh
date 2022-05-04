@@ -1,5 +1,8 @@
+#ifndef METHODS_HH
+#define METHODS_HH
+
 #include <functional>
-#include "floats.hh"
+#include "floats.h"
 
 typedef struct method_result
 {
@@ -39,3 +42,5 @@ method_result false_position_method(
     float128_t max_err,
     size_t max_iter 
 );
+
+#endif
