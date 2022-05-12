@@ -8,33 +8,36 @@ int main()
 {
     using namespace std;
 
+
+    // f(x) = xlog10(x) − 1
+
     auto f = [](float128_t x) {
-        return 4*sin(x)-exp(x);
+        return x*log10(x) - 1.0L;
     };
 
     auto df = [](float128_t x) {
-        return 4*cos(x)-exp(x);
+        return log10(x) + 1.0L/log(x);
     };
 
-    double err = 10e-10;
+    double err = 10e-7;
     double max_iter = 1000;
 
     vector<pair<string, method_result>> runs = {
         {
             "Método da bisseção",
-            bissection_method( f, -0.5L, 1.0L, err, max_iter )
+            bissection_method( f, 2.0L, 3.0L, err, max_iter )
         },
         {
             "Método de Newton",
-            newthons_method( f, df, 0.7L, err, max_iter )
+            newthons_method( f, df, 2.5L, err, max_iter )
         },
         {
             "Método da secante",
-            secant_method( f, -0.5L, 1.0L, err, max_iter )
+            secant_method( f, 2.0L, 3.0L, err, max_iter )
         },
         {
             "Método da falsa posição",
-            false_position_method( f, -0.5L, 1.0L, err, max_iter )
+            false_position_method( f, 2.0L, 3.0L, err, max_iter )
         },
     };
 
